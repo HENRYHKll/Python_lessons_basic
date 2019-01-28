@@ -1,3 +1,4 @@
+__author__ = 'Генрых'
 # Задача-1:
 # Напишите небольшую консольную утилиту,
 # позволяющую работать с папками текущей директории.
@@ -13,3 +14,50 @@
 # Для решения данной задачи используйте алгоритмы из задания easy,
 # оформленные в виде соответствующих функций,
 # и импортированные в данный файл из easy.py
+
+import os
+import easy
+
+os.getcwd()
+
+
+print('Выберите одно из действий:')
+print('1. Перейти в папку')
+print('2. Просмотреть содержимое текущей папки')
+print('3. Удалить папку')
+print('4. Создать папку')
+v = 0
+while v != 'q':
+    v = int(input('Введите число 1-4 : '))
+    print('Текущая папка : ' + os.getcwd())
+    while int(v) < 1 or int(v) > 4:
+        v = input('Введите число 1-4 : ')
+
+    if int(v) == 1:
+        fname = input('Имя папки : ')
+        try:
+            easy.gotodir(fname)
+            print("Успешно создано/удалено/перешел")
+        except (FileNotFoundError, OSError):
+            print("Невозможно создать/удалить/перейти\nНеверно введен путь")
+
+
+    elif int(v) == 2:
+        for i in os.listdir(os.getcwd()):
+            print(i)
+
+    elif int(v) == 3:
+        fname = input('Имя папки : ')
+        try:
+            easy.deldir(fname)
+            print("Успешно создано/удалено/перешел")
+        except (FileNotFoundError, OSError):
+            print("Невозможно создать/удалить/перейти\nНеверно введен путь")
+
+    elif int(v) == 4:
+        fname = input('Имя папки : ')
+        try:
+            easy.newdir(fname)
+            print("Успешно создано/удалено/перешел")
+        except (FileNotFoundError, OSError):
+            print("Невозможно создать/удалить/перейти\nНеверно введен путь")
